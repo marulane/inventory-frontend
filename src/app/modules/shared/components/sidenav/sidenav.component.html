@@ -1,0 +1,68 @@
+<div class="dashboard-container" [class.is-mobile]="mobileQuery.matches"> <!--Para activar vista mobile-->
+    
+    <!--TOOLBAR -->
+
+    <mat-toolbar color="primary" class="dashboard-toolbar">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="app-name">S-Inventory</h1>
+        <div class="right">
+            <ul>
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu"> <!--Esta es una directiva para hacer referencia al menu de log out-->
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Log Out
+                    </mat-menu>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar>
+
+    <!--SIDE NAV -->
+    <mat-sidenav-container class="sidenav-container"
+                            [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> 
+                            <!--Para dejar un espacio entre tool bar y side nav, 
+                            pregunta si estoy en la query correspondiente de max 600px, 
+                            si hace match, se asigna un margin top de 56px 
+                            de lo contrario se deja en 0-->
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                <!--Va a mostrar u ocultar el side nav dependienso si estamos o no en mobile-->
+            
+            <mat-nav-list>
+                <!--Perfil del usuario-->
+                <div class="profile-card">
+                    <div class="header">
+                        <h2>Luisa Montes</h2>
+                        <h4>luisa&#64;gmail.com</h4>
+                    </div>
+                </div>
+                <mat-divider></mat-divider> <!--Divisor de angular material-->
+
+                <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of menuNav">
+                     <!--menu-list-item es una clase de angular material
+                        se va a recorrer el arreglo de rutas declarado en sidenav.component.ts
+                        por cada registro se almacenará en la variable nav mediante un ciclo for-->
+                        <mat-icon class="icono">{{nav.icon}}</mat-icon>
+                        <div class="center"> {{nav.name}}</div>    
+
+                </a>
+
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>
+
+

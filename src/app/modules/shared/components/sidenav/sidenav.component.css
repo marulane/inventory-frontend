@@ -1,0 +1,68 @@
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.is-mobile .dashboard-toolbar{
+    position: fixed;
+    z-index: 2;
+    /*Para hacer el menú mobile sticky*/
+}
+
+h1.app-name{
+    margin-left: 8px;
+    margin-top: 0px;
+}
+
+.sidenav-container{
+    flex: 1;
+
+}
+
+.is-mobile.sidenav-container{
+    flex: 1 0 auto;
+}
+
+ul li { 
+    /*haciendo referencia a elementos nativos de html, no se usan puntos iniciales, 
+    de esta forma no se debe hacer referencia con una clase css en la etiqueta deseada, 
+    sino que se toma esta configuración para todas las secciones en general*/
+    list-style: none;
+}
+
+div ul{
+    /*solo se toma en consieracion para elementos nativos que estén escritos en el orden señalado: 
+    primero un div seguido de un ul*/
+    display: flex; /*un elemento al lado de otro*/
+    align-items: center; /*para que los elementos no se descuadren*/
+
+}
+
+.right{
+    margin-left: auto; 
+    /*Auto tells it to fill the available space. 
+    This will be the container width minus the width of your div.*/
+}
+
+.profile-card{
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
+
+.header{
+    margin-top: 20px;
+}
+
+.icono{
+    margin-right: 10px;
+}
+
+.center{
+    vertical-align: top;
+    display: inline;
+}
