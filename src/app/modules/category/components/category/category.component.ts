@@ -73,6 +73,28 @@ export class CategoryComponent implements OnInit{ //OnInit ahora se implementa m
     });
   }
 
+  //* BOTÓN DE EDITAR */
+  edit(id: number, name: string, description: string){
+    const dialogRef = this.dialog.open(NewCategoryComponent  , {
+      width: '450px',
+      data: {id: id, name: name, description: description} //Para pasar datos entre componentes (se les llama igual al nombre que tienen en los parámetros del método)
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      //Manejando el código de error que envía el ts de new category en el método onSave()
+      if(result == 1){
+
+        this.openSnackBar("Categoría Actualizada", "Exitosa"); //Abre un mensaje temporal con el método openSnackBar
+        this.getCategories(); //Carga la lista de las categorías actualizadas
+
+      } else if (result==2){
+
+        this.openSnackBar("Se produjo un error al actualizar Categoría ", "Error"); //Abre un mensaje temporal con el método openSnackBar
+      }
+    });
+  }
+
+
   //* CONSTRUCCIÓN DE MENSAJE TEMPORAL */
   openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar>{
     return this.snackBar.open(message, action, {
