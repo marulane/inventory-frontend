@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { NewCategoryComponent } from '../new-category/new-category.component';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
+import { ConfirmComponent } from '../../../shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-category',
@@ -94,6 +95,25 @@ export class CategoryComponent implements OnInit{ //OnInit ahora se implementa m
     });
   }
 
+    //* BOTÓN DE ELIMINAR */
+  delete(id: any){
+    const dialogRef = this.dialog.open(ConfirmComponent  , { //Aqui se crea un componente de cuadro de dialogo para confirmacion de delete
+      data: {id: id} //Para pasar datos entre componentes (se les llama igual al nombre que tienen en los parámetros del método)
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      //Manejando el código de error que envía el ts de new category en el método onSave()
+      if(result == 1){
+
+        this.openSnackBar("Categoría Eliminada", "Exitosa"); //Abre un mensaje temporal con el método openSnackBar
+        this.getCategories(); //Carga la lista de las categorías actualizadas
+
+      } else if (result==2){
+
+        this.openSnackBar("Se produjo un error al eliminar Categoría ", "Error"); //Abre un mensaje temporal con el método openSnackBar
+      }
+    });
+  }
 
   //* CONSTRUCCIÓN DE MENSAJE TEMPORAL */
   openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar>{
