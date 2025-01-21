@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit{
       let listCProduct = resp.product.products;
 
       listCProduct.forEach((element: ProductElement) =>{
-        element.category = element.category.name; //Asignando nombre de categoria desde el modelo
+        //element.category = element.category.name; //Asignando nombre de categoria desde el modelo //Se comenta para poder obtener todo el objeto categoria y no solo el nombre
         element.picture = 'data:image/png;base64, '+element.picture; //se necesita el prefijo para procesar la foto como base64
         dateProduct.push(element);
       });
@@ -87,6 +87,26 @@ export class ProductComponent implements OnInit{
       return this.snackBar.open(message, action, {
         duration: 2000
       })
+    }
+
+    edit(id: number, name: string, price: number, quantity: number, category: any){
+      const dialogRef = this.dialog.open(NewProductComponent  , {
+        width: '450px', 
+        data: {id: id, name: name, price: price, quantity: quantity, category: category} // Para precargar el formulario con informacion de BD
+      });
+  
+      dialogRef.afterClosed().subscribe((result: any) => {
+        //Manejando el código de error que envía el ts de new product en el método onSave()
+        if(result == 1){
+  
+          this.openSnackBar("Producto editado", "Exitoso"); //Abre un mensaje temporal con el método openSnackBar
+          this.getProducts(); //Carga la lista de las categorías actualizadas
+  
+        } else if (result==2){
+  
+          this.openSnackBar("Se produjo un error al editar producto ", "Error"); //Abre un mensaje temporal con el método openSnackBar
+        }
+      });
     }
 }
 

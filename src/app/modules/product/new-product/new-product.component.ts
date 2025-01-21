@@ -47,7 +47,7 @@ export class NewProductComponent {
       picture: ['', Validators.required]
     })
 
-    if (this.data != null ){
+    if (this.data != null ){ //Para precargar formulario
       this.updateForm(this.data);
       this.estadoFormulario = "Actualizar"; //Estado de formulario cambia a Actualizar
     }
@@ -120,7 +120,7 @@ export class NewProductComponent {
     this.productForm = this.fb.group( {
       name: [data.name, Validators.required],
       price: [data.price, Validators.required],
-      account: [data.account, Validators.required],
+      quantity: [data.quantity, Validators.required],
       category: [data.category.id, Validators.required],
       picture: ['', Validators.required]
     })
