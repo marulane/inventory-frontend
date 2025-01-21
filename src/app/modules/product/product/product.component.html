@@ -5,7 +5,7 @@
         <div>
             <mat-form-field hintLabel="Busque Productos" appearance="fill">
                 <mat-label>Search Product</mat-label>
-                <input matInput #input> <!-- El metodo se activa cuando el usuario levanta el dedo de una tecla-->
+                <input matInput #input (keyup)="buscar(input.value)"> <!-- El metodo se activa cuando el usuario levanta el dedo de una tecla-->
 
             </mat-form-field>
         </div>
@@ -68,7 +68,7 @@
                     <button mat-icon-button color="accent" (click)="edit(element.id, element.name, element.price, element.quantity, element.category)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="accent">
+                    <button mat-icon-button color="accent" (click)="delete(element.id)">
                         <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
                     

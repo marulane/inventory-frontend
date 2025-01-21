@@ -102,7 +102,7 @@ export class CategoryComponent implements OnInit{ //OnInit ahora se implementa m
     //* BOTÓN DE ELIMINAR */
   delete(id: any){
     const dialogRef = this.dialog.open(ConfirmComponent  , { //Aqui se crea un componente de cuadro de dialogo para confirmacion de delete
-      data: {id: id} //Para pasar datos entre componentes (se les llama igual al nombre que tienen en los parámetros del método)
+      data: {id: id, module: "category"} //Para pasar datos entre componentes (se les llama igual al nombre que tienen en los parámetros del método) //bandera para definir que tipo de modulo se elimina
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
