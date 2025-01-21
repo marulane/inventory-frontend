@@ -16,7 +16,24 @@ export class ProductService {
    */
   getProducts(){
     //console.log("El metodo se esta ejecutando");
-    const endpoint = `${ base_url}/products`;
+    const endpoint = `${base_url}/products`;
     return this.http.get(endpoint);
+  }
+
+  /**
+   * save the product
+   */
+
+  saveProduct(body: any){
+    const endpoint = `${base_url}/products`;
+    return this.http.post(endpoint, body);
+  }
+
+  /**
+   * update product
+   */
+  updateProduct (body: any, id: any){
+    const endpoint = `${ base_url}/products/ ${id}`;
+    return this.http.put(endpoint, body);
   }
 }

@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>{{ estadoFormulario }} Producto</h2>
+<mat-dialog-content>
+    <!-- Ligando a el formulario al objeto creado en ts-->
+    <form [formGroup]="productForm"> <!--Nombre que se le dio al formulario en ts-->
+        <div class="new-product-container">
+            <mat-form-field>
+                    <!-- Ligando a el formulario al objeto creado en ts con formControlName-->
+                <input matInput placeholder="Nombre" formControlName="name" required/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="Precio" formControlName="price" required/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="Cantidad" formControlName="quantity" required/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option *ngFor="let item of categories" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--Angular material no maneja campos de tipo input file así que se le dará otro tratamiento usando HTML5-->
+            <div>
+                <mat-label>Foto: </mat-label>
+                <label for="file-upload" class="subir">
+                    Subir archivo
+                </label>
+                <input id="file-upload"
+                        accept="image/png, image/jpeg"
+                        (change)="onFileChanged($event)"
+                        type="file" 
+                        formControlName="picture"
+                        class="input-file"/>
+                        <span>{{nameImg}}</span>
+                <!--onFileChanged método definido en ts envia el evento-->
+            </div>
+
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <!-- Candado para deshabilitar el botón de guardado para cuando todos los campos requeridos sean llenados, 
+        la directiva [disabled] funciona como && y retorna valores booleanos -->
+    <button mat-button color="primary" (click)="onSave()" [disabled]="productForm.invalid">
+        <mat-icon>save</mat-icon> Guardar
+    </button>
+
+    <button mat-button color="primary" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Cancelar
+    </button>
+</mat-dialog-actions>

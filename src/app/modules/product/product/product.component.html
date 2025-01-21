@@ -15,7 +15,7 @@
         <div class="right">
             <ul>
                 <li>
-                    <button mat-raised-button color="primary">Add Product</button>
+                    <button mat-raised-button color="primary" (click)="openProductDialog()">Add Product</button>
                 </li>
             </ul>
         </div>
@@ -43,10 +43,10 @@
                 <td mat-cell *matCellDef="let element">{{element.price}}</td>
             </ng-container>
 
-            <!--account column-->
-            <ng-container matColumnDef="account">
+            <!--quantity column-->
+            <ng-container matColumnDef="quantity">
                 <th mat-header-cell *matHeaderCellDef>Cantidad</th>
-                <td mat-cell *matCellDef="let element">{{element.account}}</td>
+                <td mat-cell *matCellDef="let element">{{element.quantity}}</td>
             </ng-container>
             
             <!--category column-->
