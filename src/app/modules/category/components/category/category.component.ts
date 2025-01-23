@@ -122,12 +122,12 @@ export class CategoryComponent implements OnInit{ //OnInit ahora se implementa m
   buscar(termino: string){
     if(termino.length == 0){
       return this.getCategories();
-    }else{
+    }
       this.categoryService.getCategoryById(termino)
       .subscribe((resp: any)=>{
         this.processCategoriesResponse(resp);
       })
-    }
+    
   }
 
   //* CONSTRUCCIÓN DE MENSAJE TEMPORAL */

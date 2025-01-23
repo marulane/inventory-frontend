@@ -21,7 +21,7 @@ export class ProductService {
   }
 
   /**
-   * save the product
+   * save the product REVISAR EN PRODUCT REST CONTROLLER LA URL CORRECTA DEL MÉTODO ALGUNAS DICEN PRODUCT Y OTRAS PRODUCTS
    */
 
   saveProduct(body: any){
@@ -40,7 +40,7 @@ export class ProductService {
    * delete product
    */
   deleteProduct(id: any){
-    const endpoint = `${ base_url}/products/${id}`;
+    const endpoint = `${ base_url}/product/${id}`;
     return this.http.delete(endpoint);
   }
 
@@ -48,7 +48,7 @@ export class ProductService {
    * search by name
    */
   getProductByName(name: any){
-    const endpoint = `${ base_url}/products/filter/${name}`;
+    const endpoint = `${ base_url}/product/filter/${name}`;
     return this.http.get(endpoint);
   }
 
